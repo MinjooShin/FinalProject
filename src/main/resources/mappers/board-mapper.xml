@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Board">
+	<insert id="insertBoard">
+		insert into board (writer, phone, email, team, content, BDboy)
+		values (#{writer}, #{phone}, #{email}, #{team}, #{content}, #{BDboy})
+	</insert>
+	<update id="updateBoard">
+		update board
+		set writer=#{writer}, phone=#{phone}, email=#{email}, team=#{team}, content=#{content}, BDboy=#{BDboy}
+		where seq = #{seq}
+	</update>
+	<update id="voteBoard">
+		update board
+		set vote=#{vote}
+		where seq = #{seq}
+	</update>
+	<delete id="deleteBoard">
+		delete from board where seq=#{seq}
+	</delete>
+	<select id="getBoard" resultType="board">
+		select * from board where seq=#{seq}
+	</select>
+	<select id="getBoardList" resultType="board">
+		select * from board order by seq desc
+	</select>
+	<select id="getBoardList_vote" resultType="board">
+		select * from board order by vote desc
+	</select>
+	
+</mapper>
